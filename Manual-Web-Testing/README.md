@@ -17,6 +17,8 @@ The workbook contains written test cases, execution results, and bug reports bas
 
 **File:** [MovieCatalog_Manual_Testing.xlsx](MovieCatalog_Manual_Testing.xlsx)
 
+**Note:** The complete test cases and bug reports are available in the Excel workbook. Download the file to review the original test documentation and execution results.
+
 ## Context
 
 Movie Catalog and its functional requirements were provided for the course examination. The test cases and defect documentation are my own work. The original exam document is not included.
