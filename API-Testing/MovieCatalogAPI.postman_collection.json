@@ -1,0 +1,381 @@
+{
+  "info": {
+    "_postman_id": "b7b92a5a-839d-4b54-bb10-a7f61253946e",
+    "name": "Manual & API Testing — Movie Catalog API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Register User",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userName\": \"{{test_username}}\",\n  \"firstName\": \"QA\",\n  \"lastName\": \"Portfolio\",\n  \"email\": \"{{test_email}}\",\n  \"password\": \"{{test_password}}\",\n  \"rePassword\": \"{{test_password}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/User/Register",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "User",
+            "Register"
+          ]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is successful (2xx)\", function () {",
+              "    pm.expect(pm.response.code).to.be.within(200, 299);",
+              "});",
+              "",
+              "pm.test(\"Response time is under 3000 ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+              "});",
+              "",
+              "if (pm.response.text().trim().length > 0) {",
+              "    pm.test(\"Response body is valid JSON when a body is returned\", function () {",
+              "        pm.expect(() => pm.response.json()).to.not.throw();",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Authenticate User",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"{{test_email}}\",\n  \"password\": \"{{test_password}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/User/Authentication",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "User",
+            "Authentication"
+          ]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is successful (2xx)\", function () {",
+              "    pm.expect(pm.response.code).to.be.within(200, 299);",
+              "});",
+              "",
+              "pm.test(\"Response time is under 3000 ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+              "});",
+              "",
+              "if (pm.response.text().trim().length > 0) {",
+              "    pm.test(\"Response body is valid JSON when a body is returned\", function () {",
+              "        pm.expect(() => pm.response.json()).to.not.throw();",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Create Movie",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{auth_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"title\": \"Fast and furious\",\r\n  \"description\": \"An action movie about fast cars and furious driving\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/Movie/Create",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "Movie",
+            "Create"
+          ]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is successful (2xx)\", function () {",
+              "    pm.expect(pm.response.code).to.be.within(200, 299);",
+              "});",
+              "",
+              "pm.test(\"Response time is under 3000 ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+              "});",
+              "",
+              "if (pm.response.text().trim().length > 0) {",
+              "    pm.test(\"Response body is valid JSON when a body is returned\", function () {",
+              "        pm.expect(() => pm.response.json()).to.not.throw();",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "List All Movies",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{auth_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/Catalog/All",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "Catalog",
+            "All"
+          ]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is successful (2xx)\", function () {",
+              "    pm.expect(pm.response.code).to.be.within(200, 299);",
+              "});",
+              "",
+              "pm.test(\"Response time is under 3000 ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+              "});",
+              "",
+              "if (pm.response.text().trim().length > 0) {",
+              "    pm.test(\"Response body is valid JSON when a body is returned\", function () {",
+              "        pm.expect(() => pm.response.json()).to.not.throw();",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Edit Movie",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{auth_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \t\"title\": \"Fast and Furious 6\",\r\n    \"description\": \"The sixth movie in the Fast and Furious franchise.\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/Movie/Edit?movieId={{movie_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "Movie",
+            "Edit"
+          ],
+          "query": [
+            {
+              "key": "movieId",
+              "value": "{{movie_id}}"
+            }
+          ]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is successful (2xx)\", function () {",
+              "    pm.expect(pm.response.code).to.be.within(200, 299);",
+              "});",
+              "",
+              "pm.test(\"Response time is under 3000 ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+              "});",
+              "",
+              "if (pm.response.text().trim().length > 0) {",
+              "    pm.test(\"Response body is valid JSON when a body is returned\", function () {",
+              "        pm.expect(() => pm.response.json()).to.not.throw();",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Delete Movie",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{auth_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/Movie/Delete?movieId={{movie_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "Movie",
+            "Delete"
+          ],
+          "query": [
+            {
+              "key": "movieId",
+              "value": "{{movie_id}}"
+            }
+          ]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is successful (2xx)\", function () {",
+              "    pm.expect(pm.response.code).to.be.within(200, 299);",
+              "});",
+              "",
+              "pm.test(\"Response time is under 3000 ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+              "});",
+              "",
+              "if (pm.response.text().trim().length > 0) {",
+              "    pm.test(\"Response body is valid JSON when a body is returned\", function () {",
+              "        pm.expect(() => pm.response.json()).to.not.throw();",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000",
+      "type": "string"
+    },
+    {
+      "key": "auth_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "test_email",
+      "value": "qa.portfolio@example.com",
+      "type": "string"
+    },
+    {
+      "key": "test_password",
+      "value": "ChangeMe123!",
+      "type": "string"
+    },
+    {
+      "key": "test_username",
+      "value": "qa_portfolio_user",
+      "type": "string"
+    },
+    {
+      "key": "movie_id",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}
